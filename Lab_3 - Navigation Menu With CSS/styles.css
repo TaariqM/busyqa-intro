@@ -1,0 +1,114 @@
+/*sets the width of the container to only take up 80% of the screen,
+sets the top and bottom margin to 0px, 
+sets the left and right margin to automatically center the container horizontally,
+adds 20px padding to the top, right, bottom, and left of the container*/
+.container {
+  width: 80%;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/*changes the background of the header to black, sets the text colour to white, 
+adds 10px of padding to the top & bottom of the header, 
+adds 0px of padding to the left and right of the header,
+moves the text in the header to the center*/
+header {
+  background: #333;
+  color: white;
+  padding: 10px 0;
+}
+
+/*the entire header gets aligned to the center, with 10px margin spacing on the top,
+and 10px margin spacing on the bottom*/
+header h1 {
+  text-align: center;
+  margin-top: 10px;
+  margin-bottom: 50px;
+}
+
+/*Align nav bar to the center*/
+header nav {
+  text-align: center;
+}
+
+/*the container that holds the title and icons becomes a flex container,
+the items within the container are aligned to the center, with space around each item*/
+.title-Icons {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+/*the container that holds the icons in the header have a bottom margin of 30px*/
+.icons {
+  margin-bottom: 30px;
+}
+
+/*gives the icons 10px of margin space on the left and right*/
+i {
+  margin: 0 10px;
+}
+
+/*when the mouse hovers over an icon, it becomes bold*/
+i:hover {
+  font-weight: bold;
+}
+
+/*removes the bullet points on each list item, moves the entire unordered list to the center, 
+and sets the padding on all sides of the unordered list to 0*/
+nav ul {
+  list-style-type: none;
+  padding: 0;
+  text-align: center;
+}
+
+/*displays the list items on the same line, with each item having a right margin of 20px*/
+nav ul li {
+  display: inline-block;
+  margin: 0 70px;
+}
+
+/*changes the colour of the text in the menu to white, and removes the underline*/
+nav ul li a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+/*when the mouse hovers over the text of a list item, the colour will change to red*/
+li a:hover {
+  color: red;
+}
+
+/*when the mouse hovers over a list item, the background of the item will turn light grey*/
+li:hover {
+  background-color: lightgrey;
+  padding: 10px;
+}
+
+/*adds 20px to the top of the margin. Seems like the value of 20px is the default margin value in the browser*/
+main {
+  margin-top: 20px;
+}
+
+/*sets the background colour of the footer to black,
+sets the text colour to white,
+aligns the text to the center of the container,
+adds 10px of padding to the top and bottom,
+adds 0px of padding to the left and right,
+changes the footer to a flex container, and adds space between the elements within the container*/
+footer {
+  background-color: #333;
+  color: white;
+  text-align: left;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 10px;
+  display: flex;
+  justify-content: space-between;
+}
+
+/*adds 10px of padding to the right of the icons in the footer*/
+.footer-Icons {
+  padding-right: 10px;
+}
