@@ -1,0 +1,52 @@
+body,
+h1,
+h2,
+p {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+}
+
+/* Styling for header and footer */
+header,
+footer {
+  background-color: #333;
+  color: white;
+  padding: 10px;
+  text-align: center;
+}
+
+/* Styling for the main content area */
+/* Apply Flexbox to the maina area */
+main {
+  padding: 10px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+/* Sidebar styling */
+/* Sidebar takes up less space */
+.sidebar {
+  background-color: #f4f4f4;
+  padding: 10px;
+  box-sizing: border-box;
+  flex: 1; /* Sidebar takes up 1 part of the available space */
+  min-width: 200px;
+}
+
+/* Main content styling */
+/* Main content takes up more space */
+.content {
+  background-color: #fff;
+  padding: 10px;
+  box-sizing: border-box;
+  flex: 3; /* Content area takes up 3 parts of the available space */
+  min-width: 300px;
+}
+
+/* Make layout stakc on smaller screens */
+@media (max-width: 768px) {
+  main {
+    flex-direction: column;
+  }
+}
