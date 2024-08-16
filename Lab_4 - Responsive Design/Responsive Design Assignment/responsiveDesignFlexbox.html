@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Responsive Design & Flexbox</title>
+    <link rel="stylesheet" href="responsiveDesignFlexbox.css" />
+    <script
+      src="https://kit.fontawesome.com/852f0bb107.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <header>
+      <i
+        class="fa-solid fa-bars"
+        id="myMenuIcon"
+        onclick="handleHambugerMenuClick()"
+      ></i>
+      <h1>Responsive Design Website</h1>
+    </header>
+    <main>
+      <div class="desktop-sidebar">
+        <a href="#">Search</a>
+        <a href="#">Images</a>
+        <a href="#">Pricing</a>
+      </div>
+
+      <div class="mobile-sidebar" id="mySideBar">
+        <a href="#">Search</a>
+        <a href="#">Images</a>
+        <a href="#">Pricing</a>
+      </div>
+
+      <div class="main-content">
+        <h2>Image Gallery</h2>
+        <div class="image-gallery-cards">
+          <div class="image-card"></div>
+        </div>
+        <h2>Pricing Table</h2>
+        <div class="pricing-table-cards">
+          <div class="pricing-card"></div>
+          <div class="pricing-card"></div>
+          <div class="pricing-card"></div>
+        </div>
+      </div>
+    </main>
+    <script src="hamburgerMenu.js"></script>
+  </body>
+</html>

@@ -1,0 +1,122 @@
+header {
+  background-color: #333;
+  color: white;
+  padding: 10px;
+  display: flex;
+  align-items: baseline;
+}
+
+header i.fa-bars {
+  display: none;
+}
+
+main {
+  /* margin: 10px 0px; */
+  display: flex;
+  flex-direction: row;
+}
+
+.desktop-sidebar {
+  background-color: #f4f4f4;
+  padding: 10px;
+  box-sizing: border-box;
+  max-width: 200px;
+  max-height: 100%;
+  flex: 1;
+}
+
+.mobile-sidebar {
+  background-color: #f4f4f4;
+  padding: 10px;
+  box-sizing: border-box;
+  max-width: 200px;
+  max-height: 100%;
+  flex: 1;
+  display: none;
+}
+
+.mobile-sidebar a {
+  color: black;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 20px;
+  font-weight: bold;
+  display: block;
+}
+
+.desktop-sidebar a {
+  color: black;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 20px;
+  font-weight: bold;
+  display: block;
+}
+
+.main-content {
+  background-color: #fff;
+  padding: 10px;
+  box-sizing: border-box;
+  flex: 3;
+  min-width: 300px;
+}
+
+/* Hide the hamburger menu icon on larger screens
+@media screen and (min-width: 769px) {
+  i {
+    display: none;
+  }
+} */
+
+/* Display the hamburger menu icon on smaller screen sizes */
+@media screen and (max-width: 993px) {
+  header i.fa-bars {
+    display: block;
+    font-size: 26px;
+    margin-right: 10px;
+  }
+
+  .desktop-sidebar {
+    display: none;
+  }
+
+  .mobile-sidebar {
+    display: none;
+  }
+}
+
+@media screen and (min-width: 994px) {
+  .desktop-sidebar {
+    display: block;
+  }
+
+  .mobile-sidebar {
+    display: none;
+  }
+}
+
+/* Mobile Menu Styles */
+@media only screen and (max-width: 768px) {
+  .mobile-sidebar {
+    background-color: #f4f4f4;
+    padding: 10px;
+    box-sizing: border-box;
+    max-width: 200px;
+    max-height: 100%;
+    flex: 1;
+    display: block;
+  }
+
+  .mobile-sidebar a {
+    color: black;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 20px;
+    font-weight: bold;
+    display: block;
+  }
+
+  .desktop-sidebar {
+    display: none;
+  }
+}
