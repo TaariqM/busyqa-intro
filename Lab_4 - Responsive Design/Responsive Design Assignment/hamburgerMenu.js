@@ -13,7 +13,7 @@ function handleHambugerMenuClick() {
   }
 }
 
-// Event listener to handle the sidebar when the window gets resized
+// Event listener to handle the sidebar when the window gets manually resized with the mouse
 window.addEventListener("resize", function () {
   if (this.window.innerWidth >= 994) {
     // if the width of the window is >= 994 pixels, then display the sidebar
