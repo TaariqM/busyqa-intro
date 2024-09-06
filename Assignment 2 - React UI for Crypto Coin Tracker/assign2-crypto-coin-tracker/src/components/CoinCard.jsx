@@ -1,32 +1,32 @@
 import React from "react";
 import "../css/coinCard.css";
 
-const CoinCard = () => {
+const CoinCard = (props) => {
   return (
     <div className="crypto-card">
       <div className="crypto-card-image">
-        <img src="" alt="" className="responsive-image" />
+        <img src={props.image} alt={props.title} className="responsive-image" />
       </div>
-      <div className="crypto-card-title"></div>
+      <div className="crypto-card-title">{props.title}</div>
       <div className="crypto-card-ticker-symbol">
         <span>Ticker Symbol: </span>
-        {/*Insert value here */}
+        {props.tickerSymbol}
       </div>
       <div className="crypto-card-current-price">
         <span>Current Price: </span>
-        {/*Insert value here */}
+        {props.price}
       </div>
       <div className="crypto-card-market-cap">
         <span>Market Cap: </span>
-        {/*Insert value here */}
+        {props.marketCap}
       </div>
       <div className="crypto-card-volume">
         <span>24th Volume: </span>
-        {/*Insert value here */}
+        {props.volume}
       </div>
       <div className="crypto-card-change">
         <span>24th Change: </span>
-        {/*Insert value here */}
+        {props.change}
       </div>
 
       <button className="crypto-card-heart-icon">

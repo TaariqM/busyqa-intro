@@ -13,6 +13,7 @@ const SearchPanel = () => {
 
       <div className="dropdown-menu">
         <select>
+          <option selected>- Select -</option>
           <option>Current Price</option>
           <option>Market Cap</option>
           <option>24th Volume</option>
