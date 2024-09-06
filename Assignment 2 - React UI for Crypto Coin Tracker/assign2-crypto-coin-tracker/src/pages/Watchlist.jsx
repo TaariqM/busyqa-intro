@@ -1,10 +1,11 @@
 import Navigation from "../components/Navigation";
 import SearchPanel from "../components/SearchPanel";
+import Footer from "../components/Footer";
 import "../css/watchlist.css";
 
 const Watchlist = () => {
   return (
-    <div>
+    <div className="watchlist-container">
       <header>
         <Navigation />
         <h1 className="watchlist-title">Crypto Coin Watchlist</h1>
@@ -12,7 +13,9 @@ const Watchlist = () => {
       <main>
         <SearchPanel />
       </main>
-      <footer></footer>
+      <footer>
+        <Footer />
+      </footer>
     </div>
   );
 };

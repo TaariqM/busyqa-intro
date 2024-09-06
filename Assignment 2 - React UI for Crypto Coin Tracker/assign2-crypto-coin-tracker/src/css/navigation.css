@@ -3,6 +3,10 @@
   background-color: rgb(66, 66, 66);
 }
 
+.fa-bars {
+  display: none;
+}
+
 nav ul {
   list-style-type: none;
   padding: 0;
@@ -25,4 +29,34 @@ nav ul li a {
 
 nav ul li:hover {
   background-color: rgb(80, 80, 80);
+}
+
+@media only screen and (max-width: 768px) {
+  .nav-container {
+    display: flex;
+    flex-direction: column;
+  }
+  .fa-bars {
+    display: block;
+    color: white;
+    font-size: 30px;
+    margin: 10px;
+  }
+
+  nav ul {
+    margin-top: 5px;
+    margin-bottom: 10px;
+  }
+  nav ul li a {
+    font-size: 10px;
+  }
+
+  .navbar {
+    display: none;
+  }
+
+  .navbar.open {
+    display: block;
+    background-color: black;
+  }
 }

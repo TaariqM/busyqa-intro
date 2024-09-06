@@ -2,11 +2,12 @@ import React from "react";
 import SearchPanel from "../components/SearchPanel";
 import Navigation from "../components/Navigation";
 import CryptoDashboard from "../components/CryptoDashboard";
+import Footer from "../components/Footer";
 import "../css/dashboard.css";
 
 const Dashboard = () => {
   return (
-    <div>
+    <div className="dashboard-container">
       <header>
         <Navigation />
         <h1 className="website-title">Crypto Coin Tracker</h1>
@@ -15,7 +16,9 @@ const Dashboard = () => {
         <SearchPanel />
         <CryptoDashboard />
       </main>
-      <footer></footer>
+      <footer>
+        <Footer />
+      </footer>
     </div>
   );
 };
