@@ -10,3 +10,9 @@
   display: flex;
   gap: 10px;
 }
+
+@media only screen and (max-width: 768px) {
+  .copy-right {
+    width: 180px;
+  }
+}

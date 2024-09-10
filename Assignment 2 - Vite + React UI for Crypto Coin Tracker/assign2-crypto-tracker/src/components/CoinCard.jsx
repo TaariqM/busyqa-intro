@@ -2,6 +2,8 @@ import React from "react";
 import "../css/coinCard.css";
 
 const CoinCard = (props) => {
+  // console.log(...props.title);
+  // console.log(props.specificCoin);
   return (
     <div className="crypto-card">
       <div className="crypto-card-image">
@@ -30,7 +32,7 @@ const CoinCard = (props) => {
       </div>
 
       <button className="crypto-card-heart-icon">
-        <i class="fa-regular fa-heart"></i>
+        <i className="fa-regular fa-heart"></i>
       </button>
     </div>
   );
