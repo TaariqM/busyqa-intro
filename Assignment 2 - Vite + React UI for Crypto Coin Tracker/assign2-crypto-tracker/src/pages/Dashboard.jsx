@@ -12,7 +12,9 @@ const Dashboard = () => {
   // it is passed down as a callback function, to the child components
   const handleSearch = (searchText) => {
     alert(`parent received ${searchText} from child component`);
+    console.log(searchText);
     setSearchBoxVal(searchText);
+    console.log(`searchBoxVal = ${searchBoxVal}`);
   };
 
   return (

@@ -115,18 +115,28 @@ const cryptoCoins = [
 
 const CryptoDashboard = (props) => {
   const [coinData, setCoinData] = useState(cryptoCoins);
+  console.log(`props.coin value in CryptoDashboard Component: ${props.coin}`);
+  // console.log(`coinData: ${coinData}`);
 
+  // setCoinData(cryptoCoins);
   //function that will filter the coins with the specific search text that was inputted in the search bar
   const filter = (searchText) => {
+    console.log(`This is the text inputted in the search bar: ${searchText}`);
+    setCoinData(cryptoCoins);
     const filterCoins = coinData.filter((coin) => {
-      coin.title.includes(searchText);
+      // coin.title.includes(searchText);
+      coin.title.includes(String(searchText));
     });
-    setCoinData(filterCoins);
+
+    console.log(`filterCoins: ${filterCoins}`);
+    // setCoinData(filterCoins);
   };
 
   useEffect(() => {
     filter(props.coin);
-  }, []);
+    // setCoinData(cryptoCoins);
+    // filter(props.coin);
+  }, [props.coin]);
 
   // const [coinIndex, setCoinIndex] = useState(0); // getter and setter for the index of a specific crypto coin in the cryptoCoins array
 

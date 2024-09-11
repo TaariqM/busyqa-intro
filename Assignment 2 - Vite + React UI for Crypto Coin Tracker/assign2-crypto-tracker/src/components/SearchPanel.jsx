@@ -23,6 +23,7 @@ const SearchPanel = (props) => {
   //this function tracks the state of the text inputted in the search bar
   const handleOnChange = (e) => {
     setSearchText(e.target.value); //update search text state
+    // console.log(searchText);
   };
 
   return (
