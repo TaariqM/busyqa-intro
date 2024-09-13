@@ -2,8 +2,6 @@ import React from "react";
 import "../css/coinCard.css";
 
 const CoinCard = (props) => {
-  // console.log(...props.title);
-  // console.log(props.specificCoin);
   return (
     <div className="crypto-card">
       <div className="crypto-card-image">

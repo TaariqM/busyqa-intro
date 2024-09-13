@@ -6,15 +6,12 @@ import Footer from "../components/Footer";
 import "../css/dashboard.css";
 
 const Dashboard = () => {
-  const [searchBoxVal, setSearchBoxVal] = useState("");
+  const [searchBoxVal, setSearchBoxVal] = useState(""); // stores the value of text that is typed in the search box, which is then passed down to child components
 
   // function that handles the text that is entered into the search box
   // it is passed down as a callback function, to the child components
   const handleSearch = (searchText) => {
-    alert(`parent received ${searchText} from child component`);
-    console.log(searchText);
     setSearchBoxVal(searchText);
-    console.log(`searchBoxVal = ${searchBoxVal}`);
   };
 
   return (

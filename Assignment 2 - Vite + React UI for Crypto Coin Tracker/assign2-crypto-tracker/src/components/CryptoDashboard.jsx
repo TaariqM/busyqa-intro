@@ -115,57 +115,32 @@ const cryptoCoins = [
 
 const CryptoDashboard = (props) => {
   const [coinData, setCoinData] = useState(cryptoCoins);
-  console.log(`props.coin value in CryptoDashboard Component: ${props.coin}`);
-  // console.log(`coinData: ${coinData}`);
 
-  // setCoinData(cryptoCoins);
   //function that will filter the coins with the specific search text that was inputted in the search bar
   const filter = (searchText) => {
-    console.log(`This is the text inputted in the search bar: ${searchText}`);
-    setCoinData(cryptoCoins);
+    if (!searchText) {
+      return;
+    }
+
     const filterCoins = coinData.filter((coin) => {
-      // coin.title.includes(searchText);
-      coin.title.includes(String(searchText));
+      return coin.title.toLowerCase().includes(searchText.toLowerCase());
     });
 
-    console.log(`filterCoins: ${filterCoins}`);
-    // setCoinData(filterCoins);
+    setCoinData(filterCoins);
   };
 
+  // component did mount
+  useEffect(() => {
+    setCoinData(cryptoCoins);
+  }, []);
+
+  // component did update
   useEffect(() => {
     filter(props.coin);
-    // setCoinData(cryptoCoins);
-    // filter(props.coin);
   }, [props.coin]);
-
-  // const [coinIndex, setCoinIndex] = useState(0); // getter and setter for the index of a specific crypto coin in the cryptoCoins array
-
-  // function that returns true if the coin parameter is equal to the title
-  // of a crypto coin within the cryptoCoins array, o/w returns false
-  // const isInputACoin = (coin) => {
-  //   // return cryptoCoins.map((cryptoCoin, index) => {
-  //   //   setCoinIndex(index);
-  //   //   return coin == cryptoCoin.title;
-  //   // });
-  //   for (let index in cryptoCoins) {
-  //     if (coin == cryptoCoins[index].title) {
-  //       setCoinIndex(index);
-  //       return True;
-  //     }
-  //   }
-
-  //   return false;
-  // };
 
   return (
     <div className="crypto-container">
-      {/* {isInputACoin(props.coin) ? (
-        <CoinCard specificCoin={cryptoCoins[coinIndex]} />
-      ) : (
-        cryptoCoins.map((currentCoin) => {
-          return <CoinCard key={currentCoin.title} {...currentCoin} />;
-        })
-      )} */}
       {coinData.map((currentCoin) => {
         return <CoinCard key={currentCoin.title} {...currentCoin} />;
       })}
