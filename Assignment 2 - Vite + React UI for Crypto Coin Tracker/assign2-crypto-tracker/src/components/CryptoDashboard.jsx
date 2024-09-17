@@ -113,16 +113,60 @@ const cryptoCoins = [
   },
 ];
 
+const dropDownOptions = ["price", "marketCap", "volume", "change"];
+
 const CryptoDashboard = (props) => {
   const [coinData, setCoinData] = useState(cryptoCoins);
 
   //function that will filter the coins with the specific search text that was inputted in the search bar
-  const filter = (searchText) => {
+  const filter = (searchText, selectOption) => {
+    console.log(`Dropdown value in CryptoDashboard Component: ${selectOption}`);
     if (!searchText) {
       return;
     }
+    // if (!searchText && !selectOption) {
+    //   return;
+    // }
 
-    const filterCoins = coinData.filter((coin) => {
+    // // if (!selectOption) {
+    // //   return;
+    // // }
+
+    // let filterCoins = [];
+
+    // if (searchText) {
+    //   filterCoins = cryptoCoins.filter((coin) => {
+    //     return coin.title.toLowerCase().includes(searchText.toLowerCase());
+    //   });
+    // }
+
+    // if (selectOption) {
+    //   let menuOption = "";
+    //   for (let option of dropDownOptions) {
+    //     menuOption = selectOption.toLowerCase().includes(option) ? option : "";
+    //   }
+    //   let prevCoin = cryptoCoins[0];
+    //   filterCoins = cryptoCoins.filter((coin) => {
+    //     if (coin[menuOption] > prevCoin[menuOption]) {
+    //       return coin;
+    //     } else {
+    //       let temp = prevCoin;
+    //       prevCoin = coin;
+    //       return temp;
+    //     }
+    //   });
+
+    //   // const menuOption = dropDownOptions.map((option) => {
+    //   //   return selectOption.toLowerCase().includes(option) ? option : "";
+    //   // })
+    //   // const option = selectOption.toLowerCase().includes
+
+    //   // filterCoins = cryptoCoins.filter((coin) => {
+    //   //   return coin.
+    //   // })
+    // }
+
+    const filterCoins = cryptoCoins.filter((coin) => {
       return coin.title.toLowerCase().includes(searchText.toLowerCase());
     });
 
@@ -136,8 +180,8 @@ const CryptoDashboard = (props) => {
 
   // component did update
   useEffect(() => {
-    filter(props.coin);
-  }, [props.coin]);
+    filter(props.coin, props.dropSelect);
+  }, [props.coin, props.dropSelect]);
 
   return (
     <div className="crypto-container">

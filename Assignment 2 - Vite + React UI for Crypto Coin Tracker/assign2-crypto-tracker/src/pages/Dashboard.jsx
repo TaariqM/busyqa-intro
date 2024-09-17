@@ -7,11 +7,17 @@ import "../css/dashboard.css";
 
 const Dashboard = () => {
   const [searchBoxVal, setSearchBoxVal] = useState(""); // stores the value of text that is typed in the search box, which is then passed down to child components
+  const [dropDownVal, setDropDownVal] = useState("");
 
   // function that handles the text that is entered into the search box
   // it is passed down as a callback function, to the child components
   const handleSearch = (searchText) => {
     setSearchBoxVal(searchText);
+  };
+
+  const handleDropDown = (dropDownSelect) => {
+    setDropDownVal(dropDownSelect);
+    console.log(`Dropdown value in Dashboard component: ${dropDownVal}`);
   };
 
   return (
@@ -21,8 +27,11 @@ const Dashboard = () => {
         <h1 className="website-title">Crypto Coin Tracker</h1>
       </header>
       <main>
-        <SearchPanel searchCallback={handleSearch} />
-        <CryptoDashboard coin={searchBoxVal} />
+        <SearchPanel
+          searchCallback={handleSearch}
+          dropDownCallback={handleDropDown}
+        />
+        <CryptoDashboard coin={searchBoxVal} dropSelect={dropDownVal} />
       </main>
       <footer>
         <Footer />

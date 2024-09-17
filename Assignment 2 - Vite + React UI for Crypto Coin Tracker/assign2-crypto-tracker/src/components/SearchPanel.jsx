@@ -3,12 +3,26 @@ import "../css/searchPanel.css";
 
 const SearchPanel = (props) => {
   const [searchText, setSearchText] = useState("");
+  const [dropDownSelect, setDropDownSelect] = useState("");
+
+  //this function will handle when the search button is clicked
   const handleClick = () => {
-    alert("button clicked");
+    if (!searchText && !dropDownSelect) {
+      return;
+    }
+
+    if (dropDownSelect) {
+      console.log(`Dropdown value in SearchPanel Component: ${dropDownSelect}`);
+      props.dropDownCallback(dropDownSelect);
+    }
+
+    props.searchCallback(searchText);
   };
 
-  const handleSelectChange = () => {
+  // this function checks the state of which option is selected in the drop down menu
+  const handleSelectChange = (e) => {
     alert("select changed");
+    setDropDownSelect(e.target.value);
   };
 
   //this function will check if the enter key is pressed
