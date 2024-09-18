@@ -18,7 +18,7 @@ const CoinCard = (props) => {
       </div>
       <div className="crypto-card-market-cap">
         <span>Market Cap: </span>
-        {props.marketCap}
+        {props.market}
       </div>
       <div className="crypto-card-volume">
         <span>24th Volume: </span>
