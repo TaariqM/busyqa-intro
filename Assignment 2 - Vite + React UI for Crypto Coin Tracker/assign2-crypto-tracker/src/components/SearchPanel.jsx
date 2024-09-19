@@ -12,7 +12,6 @@ const SearchPanel = (props) => {
     }
 
     if (dropDownSelect) {
-      console.log(`Dropdown value in SearchPanel Component: ${dropDownSelect}`);
       props.dropDownCallback(dropDownSelect);
     }
 
@@ -21,7 +20,6 @@ const SearchPanel = (props) => {
 
   // this function checks the state of which option is selected in the drop down menu
   const handleSelectChange = (e) => {
-    alert("select changed");
     setDropDownSelect(e.target.value);
   };
 
