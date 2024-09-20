@@ -1,4 +1,5 @@
 import React from "react";
+import HeartIcon from "./HeartIcon";
 import "../css/coinCard.css";
 
 const CoinCard = (props) => {
@@ -28,10 +29,7 @@ const CoinCard = (props) => {
         <span>24th Change: </span>
         {props.change}
       </div>
-
-      <button className="crypto-card-heart-icon">
-        <i className="fa-regular fa-heart"></i>
-      </button>
+      <HeartIcon />
     </div>
   );
 };

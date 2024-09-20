@@ -5,7 +5,11 @@ const SearchPanel = (props) => {
   const [searchText, setSearchText] = useState("");
   const [dropDownSelect, setDropDownSelect] = useState("");
 
-  //this function will handle when the search button is clicked
+  /**
+   * This function will handle when the search button is clicked
+   *
+   * @returns the inputted text to the searchCallback callback function, otherwise returns nothing
+   */
   const handleClick = () => {
     if (!searchText && !dropDownSelect) {
       return;
@@ -18,12 +22,20 @@ const SearchPanel = (props) => {
     props.searchCallback(searchText);
   };
 
-  // this function checks the state of which option is selected in the drop down menu
+  /**
+   * This function checks the state of which option is selected in the dropdown menu
+   *
+   * @param {*} e
+   */
   const handleSelectChange = (e) => {
     setDropDownSelect(e.target.value);
   };
 
-  //this function will check if the enter key is pressed
+  /**
+   * This function will check if the enter key is pressed
+   *
+   * @param {*} e
+   */
   const handleKeyDown = (e) => {
     if (e.keyCode === 13) {
       // if the keyboard key that is pressed is the 'Enter' key (the key code for enter is '13')
@@ -31,7 +43,11 @@ const SearchPanel = (props) => {
     }
   };
 
-  //this function tracks the state of the text inputted in the search bar
+  /**
+   * This function tracks the state of the text inputted in the search bar.
+   *
+   * @param {*} e
+   */
   const handleOnChange = (e) => {
     setSearchText(e.target.value); //update search text state
   };

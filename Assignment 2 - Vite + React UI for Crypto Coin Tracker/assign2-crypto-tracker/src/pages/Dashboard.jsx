@@ -7,17 +7,30 @@ import "../css/dashboard.css";
 
 const Dashboard = () => {
   const [searchBoxVal, setSearchBoxVal] = useState(""); // stores the value of text that is typed in the search box, which is then passed down to child components
-  const [dropDownVal, setDropDownVal] = useState("");
+  const [dropDownVal, setDropDownVal] = useState(""); // stores the dropdown menu item that is selected
 
-  // function that handles the text that is entered into the search box
-  // it is passed down as a callback function, to the child components
+  /**
+   * Function that handles the text that is entered into the search box.
+   * It is passed down as a callback function to the SearchPanel component.
+   * The value that is passed up from the child components is stored in 'searchBoxVal',
+   * which is then passed as a prop into the CryptoDashboard component
+   *
+   * @param {string} searchText
+   */
   const handleSearch = (searchText) => {
     setSearchBoxVal(searchText);
   };
 
+  /**
+   * Function that handles the dropdown menu selection.
+   * This function is passed down as a callback function to the SearchPanel component.
+   * The value that is passed up from the child components is stored in 'dropDownVal',
+   * which is then passed as a prop into the CryptoDashboard
+   *
+   * @param {string} dropDownSelect
+   */
   const handleDropDown = (dropDownSelect) => {
     setDropDownVal(dropDownSelect);
-    console.log(`Dropdown value in Dashboard component: ${dropDownVal}`);
   };
 
   return (

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import CoinCard from "./CoinCard";
 import "../css/cryptoDashboard.css";
 
+// This array holds information for several crypto coins
 const cryptoCoins = [
   {
     image: "https://cryptologos.cc/logos/bitcoin-btc-logo.png?v=032",
@@ -113,13 +114,16 @@ const cryptoCoins = [
   },
 ];
 
-// array that holds the values that the crypto coins can be sorted by
-// this array is created to make sorting of the crypto coins easier, as the options in the drop down menu are not exactly the same as whats in the array of objects
-// for example, 'Current Price' in the drop down menu is not equal to 'price'
+/**
+ * Array that holds the values that the crypto coins can be sorted by.
+ * This array is created to make sorting of the crypto coins easier,
+ * as the options in the drop down menu are not exactly the same as whats in the array of objects.
+ * For example, 'Current Price' in the drop down menu is not equal to 'price'
+ */
 const dropDownOptions = ["price", "market", "volume", "change"];
 
 const CryptoDashboard = (props) => {
-  const [coinData, setCoinData] = useState(cryptoCoins);
+  const [coinData, setCoinData] = useState(cryptoCoins); // stores the sorted and/or filtered crypto coins
 
   //function that will filter the coins with the specific search text that was inputted in the search bar
   const filter = (searchText) => {
