@@ -125,7 +125,12 @@ const dropDownOptions = ["price", "market", "volume", "change"];
 const CryptoDashboard = (props) => {
   const [coinData, setCoinData] = useState(cryptoCoins); // stores the sorted and/or filtered crypto coins
 
-  //function that will filter the coins with the specific search text that was inputted in the search bar
+  /**
+   * Function that will filter the coins with the specific search text that was inputted in the search bar
+   *
+   * @param {string} searchText
+   * @returns the cryptoCoins array that is filtered if there is text in the search box, otherwise returns nothing
+   */
   const filter = (searchText) => {
     if (!searchText) {
       return;
@@ -138,7 +143,12 @@ const CryptoDashboard = (props) => {
     setCoinData(filterCoins);
   };
 
-  // function that will sort the coins in descending order, depending on what drop down menu option is selected
+  /**
+   * Function that will sort the coins in descending order, depending on what dropdown menu option is selected
+   *
+   * @param {string} selectedOption
+   * @returns the cryptoCoins array that is sorted if there is a dropdown menu option selected, otherwise returns nothing
+   */
   const sortCoins = (selectedOption) => {
     if (!selectedOption) {
       return;
@@ -147,6 +157,8 @@ const CryptoDashboard = (props) => {
     const sortedCoins = [...coinData]; // make a copy of the coins that may or may not be filtered by the search input text
     let menuOption = ""; // this variable will store what menu option will be used to sort the coinData array
 
+    // for loop that checks if any of the string items in the 'dropDownOptions' array, is within the 'selectedOption' string
+    // this will tell me what string in the 'dropDownOptions' array I should use, to sort the crypto coins
     for (let dropDownOption of dropDownOptions) {
       if (selectedOption.toLowerCase().includes(dropDownOption)) {
         menuOption = dropDownOption;
@@ -154,6 +166,8 @@ const CryptoDashboard = (props) => {
       }
     }
 
+    // Based on what the dropdown menu option is, the crypto coins will be sorted in descending order using the sort function -> sort((a,b) => (b - a))
+    // In each string, the '$' and ',' are removed, and the string gets converted to a Number
     if (menuOption === "price") {
       sortedCoins.sort((a, b) => {
         return (
