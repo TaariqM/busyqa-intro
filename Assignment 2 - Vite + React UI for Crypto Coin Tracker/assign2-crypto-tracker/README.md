@@ -2,11 +2,11 @@
 
 ## Table of Contents
 
-- [Introduction] (#introduction)
-- [Features] (#features)
-- [Technologies Used] (#technologies-used)
-  - [Frontend] (#frontend)
-- [How to run this project] (#how-to-run-this-project)
+* [Introduction] (#introduction)
+* [Features] (#features)
+* [Technologies Used] (#technologies-used)
+  * [Frontend] (#frontend)
+* [How to run this project] (#how-to-run-this-project)
 
 ## Introduction
 
