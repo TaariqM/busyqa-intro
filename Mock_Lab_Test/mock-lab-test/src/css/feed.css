@@ -1,0 +1,17 @@
+.feed {
+  margin-top: 20px;
+  align-items: center;
+}
+
+.feed-title {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+
+.feed-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+}

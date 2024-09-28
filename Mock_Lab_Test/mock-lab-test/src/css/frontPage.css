@@ -1,0 +1,16 @@
+body {
+  background-color: #121212; /*Dark background*/
+  color: #ffffff; /*Light text colour*/
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 20px;
+}
+
+.app {
+  max-width: 600px;
+  margin: 0 auto;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  /* width: 100%; */
+}
