@@ -39,7 +39,9 @@ const SearchPanel = (props) => {
   const handleKeyDown = (e) => {
     if (e.keyCode === 13) {
       // if the keyboard key that is pressed is the 'Enter' key (the key code for enter is '13')
-      props.searchCallback(searchText);
+      if (searchText) {
+        props.searchCallback(searchText);
+      }
     }
   };
 

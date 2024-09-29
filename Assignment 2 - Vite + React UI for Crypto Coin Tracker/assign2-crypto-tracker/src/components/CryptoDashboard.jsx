@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
 import CoinCard from "./CoinCard";
+import axios from "axios";
 import "../css/cryptoDashboard.css";
 
-// This array holds information for several crypto coins
+// This array holds prop data for several crypto coins
+// This array is no longer used. The crypto coin data is received from an API
 const cryptoCoins = [
   {
     image: "https://cryptologos.cc/logos/bitcoin-btc-logo.png?v=032",
@@ -123,38 +125,48 @@ const cryptoCoins = [
 const dropDownOptions = ["price", "market", "volume", "change"];
 
 const CryptoDashboard = (props) => {
-  const [coinData, setCoinData] = useState(cryptoCoins); // stores the sorted and/or filtered crypto coins
+  // this 'coinData' state variable will hold the unfiltered and unsorted crypto coins
+  // this was created so that when a user is filtering the coins based on text multiple times, it would apply the filter on all of the coins,
+  // and not just on the coins that were filtered previously
+  // For example, when the component is mounted, and the coins are fetched from the API, the 'coinData' array will be [bitcoin, ethereum, dogecoin, bnb],
+  // and the 'coinMarketCapData' array will also be [bitcoin, ethereum, dogecoin, bnb]
+  // If the text inputted is 'coin', 'coinMarketCapData' becomes [bitcoin, dogecoin]
+  // If the user inputs 'Ethereum' into the input box, it wouldn't be able to check the 'coinMarketCapData' array since its been filtered out previously by 'coin'
+  // This is where the 'coinData' array comes in. It will apply the filter to 'coinData', which holds all the coins. These coins that are filtered get placed into the 'coinMarketCapData'
+  // Please refer to the 'filter()' function to how this is implemented
+  const [coinData, setCoinData] = useState([]);
+  const [coinMarketCapData, setCoinMarketCapData] = useState([]); // stores the sorted and/or filtered crypto coins
 
   /**
    * Function that will filter the coins with the specific search text that was inputted in the search bar
    *
    * @param {string} searchText
-   * @returns the cryptoCoins array that is filtered if there is text in the search box, otherwise returns nothing
+   * @returns the coinData array that is filtered if there is text in the search box, otherwise returns nothing
    */
   const filter = (searchText) => {
     if (!searchText) {
       return;
     }
 
-    const filterCoins = cryptoCoins.filter((coin) => {
-      return coin.title.toLowerCase().includes(searchText.toLowerCase());
+    const filterCoins = coinData.filter((coin) => {
+      return coin.name.toLowerCase().includes(searchText.toLowerCase());
     });
 
-    setCoinData(filterCoins);
+    setCoinMarketCapData(filterCoins);
   };
 
   /**
    * Function that will sort the coins in descending order, depending on what dropdown menu option is selected
    *
    * @param {string} selectedOption
-   * @returns the cryptoCoins array that is sorted if there is a dropdown menu option selected, otherwise returns nothing
+   * @returns the coinMarketCapData array that is sorted if there is a dropdown menu option selected, otherwise returns nothing
    */
   const sortCoins = (selectedOption) => {
     if (!selectedOption) {
       return;
     }
 
-    const sortedCoins = [...coinData]; // make a copy of the coins that may or may not be filtered by the search input text
+    const sortedCoins = [...coinMarketCapData]; // make a copy of the coins that may or may not be filtered by the search input text
     let menuOption = ""; // this variable will store what menu option will be used to sort the coinData array
 
     // for loop that checks if any of the string items in the 'dropDownOptions' array, is within the 'selectedOption' string
@@ -167,44 +179,61 @@ const CryptoDashboard = (props) => {
     }
 
     // Based on what the dropdown menu option is, the crypto coins will be sorted in descending order using the sort function -> sort((a,b) => (b - a))
-    // In each string, the '$' and ',' are removed, and the string gets converted to a Number
     if (menuOption === "price") {
       sortedCoins.sort((a, b) => {
-        return (
-          Number(b.price.replace("$", "").replaceAll(",", "")) -
-          Number(a.price.replace("$", "").replaceAll(",", ""))
-        );
+        return Number(b.quote.USD.price) - Number(a.quote.USD.price);
       });
     } else if (menuOption === "market") {
       sortedCoins.sort((a, b) => {
-        return (
-          Number(b.market.replace("$", "").replaceAll(",", "")) -
-          Number(a.market.replace("$", "").replaceAll(",", ""))
-        );
+        return Number(b.quote.USD.market_cap) - Number(a.quote.USD.market_cap);
       });
     } else if (menuOption === "volume") {
       sortedCoins.sort((a, b) => {
-        return (
-          Number(b.volume.replace("$", "").replaceAll(",", "")) -
-          Number(a.volume.replace("$", "").replaceAll(",", ""))
-        );
+        return Number(b.quote.USD.volume_24h) - Number(a.quote.USD.volume_24h);
       });
     } else if (menuOption === "change") {
       sortedCoins.sort((a, b) => {
         return (
-          Number(b.change.replace("%", "")) - Number(a.change.replace("%", ""))
+          Number(b.quote.USD.percent_change_24h) -
+          Number(a.quote.USD.percent_change_24h)
         );
       });
     } else {
       return;
     }
 
-    setCoinData(sortedCoins);
+    setCoinMarketCapData(sortedCoins);
   };
 
-  // component did mount
+  // API call. component did mount
   useEffect(() => {
-    setCoinData(cryptoCoins);
+    const getCryptoData = async () => {
+      let response = null;
+
+      try {
+        response = await axios.get(
+          "https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest",
+          {
+            headers: {
+              "X-CMC_PRO_API_KEY": "536d744e-5f7e-494c-82bb-b66441ae235b",
+            },
+            params: {
+              start: 1,
+              limit: 12,
+            },
+          }
+        );
+      } catch (err) {
+        console.log(err);
+      }
+
+      if (response) {
+        setCoinMarketCapData(response.data.data);
+        setCoinData(response.data.data);
+      }
+    };
+
+    getCryptoData();
   }, []);
 
   // component did update
@@ -219,8 +248,8 @@ const CryptoDashboard = (props) => {
 
   return (
     <div className="crypto-container">
-      {coinData.map((currentCoin) => {
-        return <CoinCard key={currentCoin.title} {...currentCoin} />;
+      {coinMarketCapData.map((currentCoin) => {
+        return <CoinCard key={currentCoin.name} {...currentCoin} />;
       })}
     </div>
   );
