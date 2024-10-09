@@ -1,4 +1,5 @@
 const express = require("express");
+const { connectToDb } = require("./database/connectionManager");
 
 // create an instance of express app
 const app = new express();
@@ -6,8 +7,10 @@ const watchListModule = require("./modules/watchListModule");
 
 const port = 3000;
 
-// define routes
+//------------------------------------------ Setup Middleware ------------------------------------------ //
+app.use(express.json()); // middleware to parse JSON requests
 
+//------------------------------------------ Define Routes ------------------------------------------ //
 // fetch watchlist
 app.get("/watchlist", (req, res) => {
   console.log("GET - watchlist called");
@@ -40,9 +43,14 @@ app.delete("/watchlist", (req, res) => {
   //   res.send("DELETE /watchlist called...");
 });
 
-// start express server on specific port
-app.listen(port, () => {
-  console.log(`Server started on ${port}`);
+// ------------------------------------------ Connect to MongoDB and Start Express Server ------------------------------------------ //
+connectToDb().then(() => {
+  console.log("MongoDB connection completed");
+
+  // Start Express Server on Specific Port
+  app.listen(port, () => {
+    console.log(`Express Server started on ${port}`);
+  });
 });
 
 // // add to list
