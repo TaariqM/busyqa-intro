@@ -137,6 +137,8 @@ const CryptoDashboard = (props) => {
   // Please refer to the 'filter()' function to how this is implemented
   const [coinData, setCoinData] = useState([]);
   const [coinMarketCapData, setCoinMarketCapData] = useState([]); // stores the sorted and/or filtered crypto coins
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   /**
    * Function that will filter the coins with the specific search text that was inputted in the search bar
@@ -208,34 +210,27 @@ const CryptoDashboard = (props) => {
 
   // API call. component did mount
   useEffect(() => {
-    const getCryptoData = async () => {
-      let response = null;
-
-      try {
-        response = await axios.get(coinMarketCapApiUrl, {
-          headers: {
-            "X-CMC_PRO_API_KEY": coinMarketCapApiKey,
-          },
-          params: {
-            start: 1,
-            limit: 12,
-            convert: "USD",
-          },
-        });
-
-        if (response) {
-          setCoinMarketCapData(response.data.data);
-          setCoinData(response.data.data);
-        } else {
-          throw new Error("There was an error loading data");
-        }
-      } catch (err) {
-        console.log(err);
-      }
-    };
-
-    getCryptoData();
+    fetchServerCoinData();
   }, []);
+
+  // fetching cryptocoin data from the server
+  const fetchServerCoinData = async () => {
+    console.log("fetching server data");
+
+    try {
+      const response = await axios.get("http://localhost:3000/cryptocoins");
+      if (response) {
+        setCoinMarketCapData(response.data);
+        setCoinData(response.data);
+      } else {
+        throw new Error("There was an error loading data");
+      }
+    } catch (err) {
+      setError(err);
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   // component did update
   useEffect(() => {
@@ -246,6 +241,14 @@ const CryptoDashboard = (props) => {
   useEffect(() => {
     sortCoins(props.dropSelect);
   }, [props.dropSelect]);
+
+  if (isLoading) {
+    return <p style={{ textAlign: "center", color: "white" }}>Loading....</p>;
+  }
+
+  if (error) {
+    return <p style={{ textAlign: "center" }}>{error.message}</p>;
+  }
 
   return (
     <div className="crypto-container">

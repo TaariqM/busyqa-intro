@@ -41,24 +41,31 @@ const Watchlist = () => {
       let response = null;
 
       try {
-        response = await axios.get(coinMarketCapApiUrl, {
-          headers: {
-            "X-CMC_PRO_API_KEY": coinMarketCapApiKey,
-          },
-          params: {
-            start: 1,
-            limit: 12,
-            convert: "USD",
-          },
-        });
-
-        // debugger;
+        const response = await axios.get("http://localhost:3000/cryptocoins");
         if (response) {
-          setCoinMarketCapData(response.data.data);
-          // setCoinData(response.data.data);
+          setCoinMarketCapData(response.data);
+          // setCoinData(response.data);
         } else {
           throw new Error("There was an error loading data");
         }
+        // response = await axios.get(coinMarketCapApiUrl, {
+        //   headers: {
+        //     "X-CMC_PRO_API_KEY": coinMarketCapApiKey,
+        //   },
+        //   params: {
+        //     start: 1,
+        //     limit: 12,
+        //     convert: "USD",
+        //   },
+        // });
+
+        // // debugger;
+        // if (response) {
+        //   setCoinMarketCapData(response.data.data);
+        //   // setCoinData(response.data.data);
+        // } else {
+        //   throw new Error("There was an error loading data");
+        // }
       } catch (err) {
         setError(err);
       } finally {
@@ -102,11 +109,6 @@ const Watchlist = () => {
       </header>
       <main>
         <SearchPanel />
-        {/* <ul>
-          {watchItems.map((item, index) => {
-            return <li key={index}>{item.symbol}</li>;
-          })}
-        </ul> */}
         <div className="crypto-container">
           {filterData.map((currentCoin) => {
             return <CoinCard key={currentCoin.name} {...currentCoin} />;

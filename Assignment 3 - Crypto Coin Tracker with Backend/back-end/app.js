@@ -1,6 +1,7 @@
 const express = require("express");
 const cors = require("cors");
 const { connectToDb } = require("./database/connectionManager");
+const getCryptoCoins = require("./modules/cryptoCoinModule");
 
 // create an instance of express app
 const app = new express();
@@ -42,6 +43,15 @@ app.delete("/watchlist", async (req, res) => {
   await watchListModule.removeItem(symbol);
 
   res.send();
+});
+
+// the backend should manage the calls to the coinmarketcap external api and deal with CORS!
+// not the front end
+
+// fetch crypto coins
+app.get("/cryptocoins", async (req, res) => {
+  const data = await getCryptoCoins();
+  res.send(data);
 });
 
 // ------------------------------------------ Connect to MongoDB and Start Express Server ------------------------------------------ //
