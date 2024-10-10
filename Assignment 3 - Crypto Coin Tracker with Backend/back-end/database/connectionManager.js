@@ -1,3 +1,5 @@
+// ------------------------------------------ This file handles the connection to the Database ------------------------------------------ //
+
 const mongoose = require("mongoose");
 
 const dbUrl = "mongodb://localhost:27017/crypto-coin-tracker";
