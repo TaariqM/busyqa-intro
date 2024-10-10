@@ -1,4 +1,5 @@
 const express = require("express");
+const cors = require("cors");
 const { connectToDb } = require("./database/connectionManager");
 
 // create an instance of express app
@@ -9,6 +10,7 @@ const port = 3000;
 
 //------------------------------------------ Setup Middleware ------------------------------------------ //
 app.use(express.json()); // middleware to parse JSON requests
+app.use(cors());
 
 //------------------------------------------ Define Routes ------------------------------------------ //
 // fetch watchlist
@@ -48,6 +50,6 @@ connectToDb().then(() => {
 
   // Start Express Server on Specific Port
   app.listen(port, () => {
-    console.log(`Express Server started on ${port}`);
+    console.log(`CORS-enabled Express Server started on ${port}`);
   });
 });

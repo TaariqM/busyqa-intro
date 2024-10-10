@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { coinMarketCapApiKey, coinMarketCapApiUrl } from "../common/constants";
 import CoinCard from "./CoinCard";
 import axios from "axios";
 import "../css/cryptoDashboard.css";
@@ -211,25 +212,25 @@ const CryptoDashboard = (props) => {
       let response = null;
 
       try {
-        response = await axios.get(
-          "https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest",
-          {
-            headers: {
-              "X-CMC_PRO_API_KEY": "536d744e-5f7e-494c-82bb-b66441ae235b",
-            },
-            params: {
-              start: 1,
-              limit: 12,
-            },
-          }
-        );
+        response = await axios.get(coinMarketCapApiUrl, {
+          headers: {
+            "X-CMC_PRO_API_KEY": coinMarketCapApiKey,
+          },
+          params: {
+            start: 1,
+            limit: 12,
+            convert: "USD",
+          },
+        });
+
+        if (response) {
+          setCoinMarketCapData(response.data.data);
+          setCoinData(response.data.data);
+        } else {
+          throw new Error("There was an error loading data");
+        }
       } catch (err) {
         console.log(err);
-      }
-
-      if (response) {
-        setCoinMarketCapData(response.data.data);
-        setCoinData(response.data.data);
       }
     };
 
