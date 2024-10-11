@@ -1,4 +1,5 @@
 const WatchItem = require("../models/watchItem");
+const getCryptoCoins = require("./cryptoCoinModule");
 
 const addItem = async (symbol) => {
   try {
@@ -24,9 +25,21 @@ const getItems = async () => {
   try {
     console.log(`watch list items fetched...`);
 
+    // move Watchlist front end logic for filtering coins to server side/backend
+    const coins = await getCryptoCoins();
+
+    // fetch all wathlist docs from MongoDB
     // convert this to async/await to allow the database to respond
-    const items = await WatchItem.find({});
-    return items;
+    const watchItems = await WatchItem.find({});
+
+    const watchListSymbols = watchItems.map((item) => {
+      return item.symbol;
+    });
+    const filteredCoinsData = coins.filter((coin) => {
+      return watchListSymbols.includes(coin.tickerSymbol);
+    });
+
+    return filteredCoinsData;
   } catch (err) {
     console.log(`error fetching items ${err}`);
   }

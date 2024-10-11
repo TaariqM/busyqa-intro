@@ -15,23 +15,23 @@ const CoinCard = (props) => {
       <div className="crypto-card-title">{props.name}</div>
       <div className="crypto-card-ticker-symbol">
         <span>Ticker Symbol: </span>
-        {props.symbol}
+        {props.tickerSymbol}
       </div>
       <div className="crypto-card-current-price">
         <span>Current Price: </span>
-        {`$${props.quote.USD.price.toFixed(2)}`}
+        {`$${props.price}`}
       </div>
       <div className="crypto-card-market-cap">
         <span>Market Cap: </span>
-        {`$${props.quote.USD.market_cap.toFixed(2)}`}
+        {`$${props.marketCap}`}
       </div>
       <div className="crypto-card-volume">
         <span>24th Volume: </span>
-        {`$${props.quote.USD.volume_24h.toFixed(2)}`}
+        {`$${props.volume_24}`}
       </div>
       <div className="crypto-card-change">
         <span>24th Change: </span>
-        {`${props.quote.USD.percent_change_24h.toFixed(2)}%`}
+        {`${props.change_24}%`}
       </div>
       <HeartIcon />
     </div>
