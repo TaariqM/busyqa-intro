@@ -33,7 +33,7 @@ const CoinCard = (props) => {
         <span>24th Change: </span>
         {`${props.change_24}%`}
       </div>
-      <HeartIcon />
+      <HeartIcon isWatched={props.isWatched} />
     </div>
   );
 };

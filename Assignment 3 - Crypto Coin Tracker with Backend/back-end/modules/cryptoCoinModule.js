@@ -1,8 +1,9 @@
 const { coinMarketCapApiKey, coinMarketCapApiUrl } = require("./configModule");
+const getWatchItemSymbols = require("./mongooseModule");
 const axios = require("axios");
 
 const getCryptoCoins = async () => {
-  console.log("fetching data from coinmarketcao");
+  console.log("fetching data from coinmarketcap");
 
   try {
     response = await axios.get(coinMarketCapApiUrl, {
@@ -35,7 +36,19 @@ const getCryptoCoins = async () => {
         };
       });
 
-      return dtoData;
+      //
+      const watchListSymbols = await getWatchItemSymbols();
+
+      // iterate over the dto data and dynamically toggle isWateched
+      const watchedDtoData = dtoData.map((coin) => ({
+        // spread out the object properties
+        ...coin,
+        // dynamically set the isWatched field, if coin symbol is in the watch list
+        isWatched: watchListSymbols.includes(coin.tickerSymbol),
+      }));
+
+      // return dtoData;
+      return watchedDtoData;
     } else {
       throw new Error("There was an error loading data");
     }

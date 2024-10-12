@@ -1,4 +1,5 @@
-const WatchItem = require("../models/watchItem");
+// const WatchItem = require("../models/watchItem");
+const getWatchItemSymbols = require("./mongooseModule");
 const getCryptoCoins = require("./cryptoCoinModule");
 
 const addItem = async (symbol) => {
@@ -30,13 +31,16 @@ const getItems = async () => {
 
     // fetch all wathlist docs from MongoDB
     // convert this to async/await to allow the database to respond
-    const watchItems = await WatchItem.find({});
+    // const watchItems = await WatchItem.find({});
 
-    const watchListSymbols = watchItems.map((item) => {
-      return item.symbol;
-    });
+    // const watchListSymbols = watchItems.map((item) => {
+    //   return item.symbol;
+    // });
+
+    const watchSymbols = await getWatchItemSymbols();
+
     const filteredCoinsData = coins.filter((coin) => {
-      return watchListSymbols.includes(coin.tickerSymbol);
+      return watchSymbols.includes(coin.tickerSymbol);
     });
 
     return filteredCoinsData;
