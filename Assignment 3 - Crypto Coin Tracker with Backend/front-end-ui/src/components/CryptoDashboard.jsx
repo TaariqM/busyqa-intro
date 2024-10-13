@@ -184,22 +184,19 @@ const CryptoDashboard = (props) => {
     // Based on what the dropdown menu option is, the crypto coins will be sorted in descending order using the sort function -> sort((a,b) => (b - a))
     if (menuOption === "price") {
       sortedCoins.sort((a, b) => {
-        return Number(b.quote.USD.price) - Number(a.quote.USD.price);
+        return Number(b.price) - Number(a.price);
       });
     } else if (menuOption === "market") {
       sortedCoins.sort((a, b) => {
-        return Number(b.quote.USD.market_cap) - Number(a.quote.USD.market_cap);
+        return Number(b.marketCap) - Number(a.marketCap);
       });
     } else if (menuOption === "volume") {
       sortedCoins.sort((a, b) => {
-        return Number(b.quote.USD.volume_24h) - Number(a.quote.USD.volume_24h);
+        return Number(b.volume_24) - Number(a.volume_24);
       });
     } else if (menuOption === "change") {
       sortedCoins.sort((a, b) => {
-        return (
-          Number(b.quote.USD.percent_change_24h) -
-          Number(a.quote.USD.percent_change_24h)
-        );
+        return Number(b.change_24) - Number(a.change_24);
       });
     } else {
       return;

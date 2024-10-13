@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import axios from "axios";
 import "../css/heartIcon.css";
 
 const HeartIcon = (props) => {
@@ -10,7 +11,30 @@ const HeartIcon = (props) => {
    */
   const handleWatchList = () => {
     alert("Added to watchlist");
-    // setIsLiked(!isLiked);
+    // props.isWatchedCallback(!props.isWatched);
+    setIsLiked(!isLiked);
+  };
+
+  // component did update
+  useEffect(() => {
+    updateWatchList();
+    // console.log(`'isLiked value: ${isLiked}`);
+  }, [isLiked]);
+
+  const updateWatchList = async () => {
+    console.log(`Updating Watch List`);
+
+    if (isLiked) {
+      try {
+        await axios.post(
+          `http://localhost:3000/watchlist?symbol=${props.tickerSymbol}`
+        );
+      } catch (error) {
+        throw new Error(
+          `There is an error updating the watch list. Here is the error: ${error}`
+        );
+      }
+    }
   };
 
   return (
@@ -18,7 +42,7 @@ const HeartIcon = (props) => {
       <button
         className="crypto-card-heart-icon"
         onClick={handleWatchList}
-        disabled={!props.isWatched}
+        // disabled={!props.isWatched}
       >
         <i
           className={`fa-regular fa-heart ${props.isWatched ? "red" : ""}`}

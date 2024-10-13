@@ -1,5 +1,5 @@
 const { coinMarketCapApiKey, coinMarketCapApiUrl } = require("./configModule");
-const getWatchItemSymbols = require("./mongooseModule");
+const { getWatchItemSymbols } = require("./mongooseModule");
 const axios = require("axios");
 
 const getCryptoCoins = async () => {

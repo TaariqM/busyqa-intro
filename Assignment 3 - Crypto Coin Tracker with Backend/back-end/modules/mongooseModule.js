@@ -13,4 +13,17 @@ const getWatchItemSymbols = async () => {
   return watchListSymbols;
 };
 
-module.exports = getWatchItemSymbols;
+const createWatchItem = async (symbol) => {
+  // add symbol to watch list
+  const item = new WatchItem({
+    symbol: symbol,
+    dateCreated: Date.now(),
+  });
+
+  await item.save();
+};
+
+module.exports = {
+  getWatchItemSymbols,
+  createWatchItem,
+};

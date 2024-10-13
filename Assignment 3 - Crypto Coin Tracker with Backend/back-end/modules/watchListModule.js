@@ -1,5 +1,5 @@
 // const WatchItem = require("../models/watchItem");
-const getWatchItemSymbols = require("./mongooseModule");
+const { getWatchItemSymbols, createWatchItem } = require("./mongooseModule");
 const getCryptoCoins = require("./cryptoCoinModule");
 
 const addItem = async (symbol) => {
@@ -9,12 +9,13 @@ const addItem = async (symbol) => {
     }
 
     // add symbol to watch list
-    const item = new WatchItem({
-      symbol: symbol,
-      dateCreated: Date.now(),
-    });
+    // const item = new WatchItem({
+    //   symbol: symbol,
+    //   dateCreated: Date.now(),
+    // });
 
-    await item.save();
+    // await item.save();
+    createWatchItem(symbol);
   } catch (err) {
     console.log(`error adding item: ${err}`);
   }

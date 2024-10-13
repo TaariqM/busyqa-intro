@@ -1,8 +1,17 @@
 import React from "react";
+import { useState, useEffect } from "react";
+import axios from "axios";
 import HeartIcon from "./HeartIcon";
 import "../css/coinCard.css";
 
 const CoinCard = (props) => {
+  // const [isWatchedVal, setIsWatchedVal] = useState();
+  // const [cryptoSymbol, setCryptoSymbol] = useState();
+
+  // const isWatchedCallback = (watchedVal) => {
+  //   // setIsWatchedVal(watchedVal);
+  // };
+
   return (
     <div className="crypto-card">
       <div className="crypto-card-image">
@@ -33,7 +42,11 @@ const CoinCard = (props) => {
         <span>24th Change: </span>
         {`${props.change_24}%`}
       </div>
-      <HeartIcon isWatched={props.isWatched} />
+      <HeartIcon
+        isWatched={props.isWatched}
+        tickerSymbol={props.tickerSymbol}
+        // isWatchedCallback={isWatchedCallback}
+      />
     </div>
   );
 };
