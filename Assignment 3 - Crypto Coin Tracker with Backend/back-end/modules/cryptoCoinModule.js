@@ -3,8 +3,6 @@ const { getWatchItemSymbols } = require("./mongooseModule");
 const axios = require("axios");
 
 const getCryptoCoins = async () => {
-  console.log("fetching data from coinmarketcap");
-
   try {
     response = await axios.get(coinMarketCapApiUrl, {
       headers: {
@@ -19,9 +17,6 @@ const getCryptoCoins = async () => {
 
     if (response) {
       const rawData = await response.data.data;
-      console.log(`coin market data: ${JSON.stringify(rawData)}`);
-
-      // return rawData;
 
       // create a data transfer object, containing only the data fields the UI needs
       const dtoData = rawData.map((coin) => {
@@ -47,7 +42,6 @@ const getCryptoCoins = async () => {
         isWatched: watchListSymbols.includes(coin.tickerSymbol),
       }));
 
-      // return dtoData;
       return watchedDtoData;
     } else {
       throw new Error("There was an error loading data");

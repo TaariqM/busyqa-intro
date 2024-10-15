@@ -28,7 +28,6 @@ app.post("/watchlist", async (req, res) => {
   console.log("POST - received on server");
   // get the symbol from request parameters
   const { symbol } = req.query;
-  console.log(JSON.stringify(req.query));
 
   await watchListModule.addItem(symbol);
 

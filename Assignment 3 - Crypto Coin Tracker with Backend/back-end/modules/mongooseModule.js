@@ -23,7 +23,12 @@ const createWatchItem = async (symbol) => {
   await item.save();
 };
 
+const removeWatchItem = async (symbol) => {
+  await WatchItem.deleteOne({ symbol: symbol });
+};
+
 module.exports = {
   getWatchItemSymbols,
   createWatchItem,
+  removeWatchItem,
 };
