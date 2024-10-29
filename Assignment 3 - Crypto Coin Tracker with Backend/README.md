@@ -64,6 +64,11 @@ The next steps to this project is to implement user registration and user login.
 
 To run this project, please clone this repository onto your laptop/PC. Open up two terminals, either through your code editor, or having two command prompts open. Navigate to this project in both terminals.
 
-To start the backend server, go to your first terminal and type: - `npm install` - `node app.js` (you can also type `nodemon app.js`)
+To start the backend server, go to your first terminal and type:
 
-To start the frontend server, go to your second terminal and type: - `cd front-end-ui`
+- `npm install`
+- `node app.js` (you can also type `nodemon app.js`)
+
+To start the frontend server, go to your second terminal and type:
+
+- `cd front-end-ui`
