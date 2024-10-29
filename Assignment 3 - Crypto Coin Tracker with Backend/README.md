@@ -35,7 +35,14 @@ The specific API endpoint that was used from CoinMarketCap is:
 | ------------------- | ---------------------------------- | ------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | GET                 | /v1/cryptocurrency/listings/latest | Returns a list of all active cryptocurrencies with the latest market data | `start` - integer value that sets what cryptocurrency the list should start at. `limit`- integer values that specifies the number of results that should be returned. `convert` - string value that converts the market value of the cryptocurrencies to a specific fiat currency. |
 
-Below are the specific
+For the separately designed RESTful API, the follow endpoints were designed and implemented to allow users to fetch, add, and remove cryptocoins from their watchlist.
+
+| HTTP Request Method | Endpoints        | Action                                                                                                           | Optional Parameters |
+| ------------------- | ---------------- | ---------------------------------------------------------------------------------------------------------------- | ------------------- |
+| GET                 | /api/watchlist   | Returns all cryptocoins in watch list                                                                            | N/A                 |
+| POST                | /api/watchlist   | Adds a cryptocoin to the watch list                                                                              | N/A                 |
+| DELETE              | /api/watchlist   | Removes a cryptocoin from the watch list                                                                         | N/A                 |
+| GET                 | /api/cryptocoins | Fetches all cryptocoins from the CoinMarketCap API. This endpoint interacts with the endpoint in the table above | N/A                 |
 
 ## Technologies Used
 
