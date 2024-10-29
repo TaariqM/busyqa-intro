@@ -31,14 +31,9 @@ This web application utitilizes both the CoinMarketCap API and a separate design
 
 The specific API endpoint that was used from CoinMarketCap is:
 
-| HTTP Request Method | Enpoint(s)                         | Action                                                                    | Optional Parameters |
-| ------------------- | ---------------------------------- | ------------------------------------------------------------------------- | ------------------- |
-| GET                 | /v1/cryptocurrency/listings/latest | Returns a list of all active cryptocurrencies with the latest market data |
-
-`start` - integer value that sets what cryptocurrency the list should start at.
-
-`limit`- integer values that specifies the number of results that should be returned.
-`convert` - string value that converts the market value of the cryptocurrencies to a specific fiat currency. |
+| HTTP Request Method | Enpoint(s)                         | Action                                                                    | Optional Parameters                                                                                                                                                                                                                                                                    |
+| ------------------- | ---------------------------------- | ------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| GET                 | /v1/cryptocurrency/listings/latest | Returns a list of all active cryptocurrencies with the latest market data | _`start` - integer value that sets what cryptocurrency the list should start at. _`limit`- integer values that specifies the number of results that should be returned. \*`convert` - string value that converts the market value of the cryptocurrencies to a specific fiat currency. |
 
 Below are the specific
 
